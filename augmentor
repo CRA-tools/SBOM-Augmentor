@@ -1,0 +1,14 @@
+#!/bin/sh
+
+JAR=target/scala-3.8.0/SBOM_augmentor-assembly-0.2.0-SNAPSHOT.jar
+
+if [ ! -e $JAR ]
+then
+	echo "Could not open $JAR. Make sure to first compile the code via 'sbt assembly'"
+	exit 1
+fi
+
+AUGMENTOR_HOME=$(pwd)
+export AUGMENTOR_HOME
+#java --sun-misc-unsafe-memory-access=allow -jar $JAR $@
+java -jar $JAR "$@"

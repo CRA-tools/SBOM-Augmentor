@@ -1,0 +1,7 @@
+package sbom.generators.python
+
+sealed trait PythonManifestType
+case object PythonPipenv extends PythonManifestType
+case object PythonPoetry extends PythonManifestType
+case object PythonRequirements extends PythonManifestType
+case object PythonVirtualEnv extends PythonManifestType

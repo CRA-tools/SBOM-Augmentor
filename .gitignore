@@ -1,0 +1,11 @@
+project/target
+project/project/target
+output
+.idea
+cpg.bin
+cyclonedx_sbom.json
+faulttolerant_sbom.json
+filtered_sbom.json
+.bsp
+target
+

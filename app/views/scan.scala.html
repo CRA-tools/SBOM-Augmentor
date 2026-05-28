@@ -1,0 +1,77 @@
+@(form: Form[controllers.ProjectScanForm])(implicit request: MessagesRequestHeader)
+
+@main("Scan Python project") {
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addRowButton = document.getElementById("addUsageRow");
+        const unsafe_usages_container = document.getElementById("unsafe_usages_container");
+        let counter = 0;
+
+        addRowButton.addEventListener("click", function () {
+            counter++;
+            const rowHtml = `
+                        <div class="form-input">
+                            <input type="text" name="module_name_#_${counter}" placeholder="Module name"/>
+                            <input type="text" name="function_name_#_${counter}" placeholder="Function name"/>
+                        </div>
+                    `;
+            unsafe_usages_container.insertAdjacentHTML("beforeend", rowHtml);
+        });
+    });
+</script>
+
+<div style="padding-bottom: 100px;" class="upload-page">
+    <div class="upload-card">
+        <h1>Python scan</h1>
+        <p>
+            Upload your Python project and list the unsafe usages you want to scan for.
+        </p>
+
+        @helper.form(action = routes.MainController.upload_scan, Symbol("enctype") -> "multipart/form-data") {
+
+        <div class="form-section">
+
+            <div class="nice-form-group">
+                @helper.inputFile(
+                form("inputProject"),
+                Symbol("_label") -> "Zipped Python project"
+                )
+            </div>
+
+            <div id="unsafe_usages_container">
+            </div>
+            <button type="button" id="addUsageRow" class="btn add-row-button">Add module and function</button>
+
+            @helper.CSRF.formField
+
+            <div class="submit-container">
+                <input
+                        type="submit"
+                        id="upload_scan"
+                        value="Scan code"
+                        class="submit-button"
+                />
+            </div>
+
+        </div>
+        }
+    </div>
+
+</div>
+
+<div class="logo-banner">
+    <div class="logo-container">
+        <div class="logo-item">
+            <a href="https://cra-cy.eu/"><img src="/assets/images/cracy_logo.png" alt="CRACY"></a>
+        </div>
+        <div class="logo-item">
+            <a href="https://cybersecurity-centre.europa.eu/index_en"><img src="/assets/images/eccc-logo.png" alt="ECCC"></a>
+        </div>
+        <div class="logo-item">
+            <a href="https://european-union.europa.eu"><img src="/assets/images/EU_cofunding.png" alt="Co-funded by the EU"></a>
+        </div>
+    </div>
+</div>
+
+}
