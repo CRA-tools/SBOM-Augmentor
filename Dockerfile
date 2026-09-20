@@ -10,4 +10,4 @@ RUN python3 -m pip install --break-system-packages cyclonedx-bom
 COPY . .
 RUN sbt clean compile assembly
 
-ENTRYPOINT ["./augmentor"]
+ENTRYPOINT ["./augmentor_rest_api"]
