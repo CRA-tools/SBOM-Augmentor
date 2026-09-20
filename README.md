@@ -14,7 +14,7 @@ The SBOM Augmentor is a tool for enhancing software-bills-of-materials (SBOMs) o
 1. Download the SBOM Augmentor
 2. Compile it into a JAR file by executing `sbt assembly`
 
-Alternatibely, a Docker image is also available: [mvdcamme/sbom_augmentor](https://hub.docker.com/repository/docker/mvdcamme/sbom_augmentor)
+Alternatively, a Docker image is also available: [mvdcamme/sbom_augmentor](https://hub.docker.com/repository/docker/mvdcamme/sbom_augmentor)
 
 ## Usage
 The SBOM Augmentor can be run both as a command-line tool and as a REST API.
@@ -43,3 +43,7 @@ When passing `--unsafe`, no augmented SBOM will be generated.
 
 ### REST API
 Run `./augmentor_rest_api` and the SBOM Augmentor will be available on `localhost:9000`.
+Scanning an application for usages of unsafe functions is available through `http://localhost:9000/scan`,
+generating an enhanced SBOM is possible through `http://localhost:9000/`
+
+When using the Docker image, running `docker run -p 9000:9000 mvdcamme/sbom_augmentor` will make the REST API available via port 9000.
